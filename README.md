@@ -33,3 +33,11 @@ sudo apt install -y build-essential pkg-config libgtk-3-dev libvte-2.91-dev
 make
 sudo make install
 ```
+
+## Shell Requirements
+
+Only shells listed in `/etc/shells` appear in the per-pane switcher dropdown. Shells installed via `apt` are added automatically, while custom binaries (such as Cargo or Homebrew builds) can be registered with:
+
+```sh
+command -v <shell-name> | sudo tee -a /etc/shells
+```
