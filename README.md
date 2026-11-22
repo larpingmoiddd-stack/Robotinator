@@ -7,7 +7,7 @@ Inspired by Terminator, **Robotinator** automatically reads `/etc/shells` and le
 ## Quick Install (Debian / Ubuntu / Linux Mint)
 
 ```sh
-curl -fsSL https://github.com -o /tmp/robotinator.deb && sudo apt install -y /tmp/robotinator.deb && rm /tmp/robotinator.deb
+git clone https://github.com/larpingmoiddd-stack/Robotinator && cd Robotinator && make && sudo make install
 ```
 
 ## Features
