@@ -2,42 +2,45 @@
 
 A fast, lightweight **native C** multi-pane terminal emulator built with **GTK3** and **VTE**.
 
-Inspired by Terminator, **Robotinator** automatically reads `/etc/shells` and lets you spawn **different shells in every split pane on the fly**, no profile setup required.
+Inspired by Terminator, **Robotinator** automatically reads \`/etc/shells\` and lets you spawn **different shells in every split pane on the fly**, no profile setup required.
 
-## Quick Install (Debian / Ubuntu / Linux Mint)
+## Quick Install
 
-```sh
-curl -fsSL https://github.com -o /tmp/robotinator.deb && sudo apt install -y /tmp/robotinator.deb && rm /tmp/robotinator.deb
-```
+**Debian / Ubuntu / Linux Mint**
+\`\`\`sh
+curl -fLO https://github.com/larpingmoiddd-stack/Robotinator/releases/latest/download/robotinator_0.5.0_amd64.deb
+sudo apt install ./robotinator_0.5.0_amd64.deb
+\`\`\`
 
-## Features
-- **Instant Per-Pane Shell Switching:** Pick any shell from `/etc/shells` (`bash`, `zsh`, `fish`, `elvish`, `xonsh`, `ksh`, `rc`, `pwsh`) before splitting.
-- **Infinite Recursive Splits:** Split any pane horizontally or vertically into custom grids.
-- **Broadcast Mode:** Send keystrokes to every open terminal pane simultaneously.
-- **Pure Native C:** Compiles to a tiny, zero-bloat ELF binary (~7 KB `.deb`).
+**Fedora / RHEL / openSUSE**
+\`\`\`sh
+curl -fLO https://github.com/larpingmoiddd-stack/Robotinator/releases/latest/download/robotinator-0.5.0-1.x86_64.rpm
+sudo dnf install ./robotinator-0.5.0-1.x86_64.rpm
+\`\`\`
 
-## Keyboard Shortcuts
+**Arch Linux**
+\`\`\`sh
+curl -fLO https://github.com/larpingmoiddd-stack/Robotinator/releases/latest/download/PKGBUILD
+makepkg -si
+\`\`\`
 
-| Shortcut | Action |
-| :--- | :--- |
-| `Ctrl + Shift + O` | Split active pane horizontally |
-| `Ctrl + Shift + E` | Split active pane vertically |
-| `Ctrl + Shift + B` | Toggle Broadcast Mode across all panes |
-| `Ctrl + Shift + C` | Copy selection to clipboard |
-| `Ctrl + Shift + V` | Paste from clipboard |
+**Gentoo**
+\`\`\`sh
+curl -fLO https://github.com/larpingmoiddd-stack/Robotinator/releases/latest/download/Robotinator-0.5.0.ebuild
+\`\`\`
 
 ## Build from Source
 
-```sh
+\`\`\`sh
 sudo apt install -y build-essential pkg-config libgtk-3-dev libvte-2.91-dev
 make
 sudo make install
-```
+\`\`\`
 
 ## Shell Requirements
 
-Only shells listed in `/etc/shells` appear in the per-pane switcher dropdown. Shells installed via `apt` are added automatically, while custom binaries (such as Cargo or Homebrew builds) can be registered with:
+Only shells listed in \`/etc/shells\` appear in the per-pane switcher dropdown. Shells installed via \`apt\` are added automatically, while custom binaries (such as Cargo or Homebrew builds) can be registered with:
 
-```sh
+\`\`\`sh
 command -v <shell-name> | sudo tee -a /etc/shells
-```
+\`\`\`
