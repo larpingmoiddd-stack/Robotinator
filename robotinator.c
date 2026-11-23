@@ -14,6 +14,17 @@ static gchar *current_shell = NULL;
 static GtkWidget *btn_bcast = NULL;
 static gboolean is_flatpak = FALSE;
 
+static gboolean on_term_button_press(GtkWidget *term, GdkEventButton *event, gpointer data) {
+    (void)data;
+    if (event->type == GDK_BUTTON_PRESS && event->button == 3) {
+        active_term = term;
+        gtk_widget_grab_focus(term);
+        vte_terminal_paste_clipboard(VTE_TERMINAL(term));
+        return TRUE;
+    }
+    return FALSE;
+}
+
 static GtkWidget *create_terminal(const char *shell_path);
 static void split_pane(GtkOrientation orientation);
 
@@ -99,6 +110,7 @@ static GtkWidget *create_terminal(const char *shell_path) {
     vte_terminal_set_colors(VTE_TERMINAL(term), &fg, &bg, NULL, 0);
 
     g_signal_connect(term, "focus-in-event", G_CALLBACK(on_term_focus), NULL);
+    g_signal_connect(term, "button-press-event", G_CALLBACK(on_term_button_press), NULL);
     g_signal_connect(term, "key-press-event", G_CALLBACK(on_term_keypress), NULL);
     g_signal_connect(term, "child-exited", G_CALLBACK(on_term_exit), NULL);
 
